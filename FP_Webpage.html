@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savannah Seeds - Select Your State</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #90EE90 0%, #98FB98 50%, #90EE90 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #228B22, #32CD32);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .states-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .state-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            border: none;
+            border-radius: 16px;
+            padding: 20px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .state-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .state-button:hover::before {
+            left: 100%;
+        }
+
+        .state-button:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .state-button:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .state-button:nth-child(1) {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            animation-delay: 0.1s;
+        }
+
+        .state-button:nth-child(1):hover {
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .state-button:nth-child(2) {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            animation-delay: 0.2s;
+        }
+
+        .state-button:nth-child(2):hover {
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .state-button:nth-child(3) {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            animation-delay: 0.3s;
+        }
+
+        .state-button:nth-child(3):hover {
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .state-button:nth-child(4) {
+            background: linear-gradient(135df, #ff6b6b 0%, #ffa500 100%);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            animation-delay: 0.4s;
+        }
+
+        .state-button:nth-child(4):hover {
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .state-button:nth-child(5) {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            animation-delay: 0.5s;
+        }
+
+        .state-button:nth-child(5):hover {
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .footer-text {
+            color: #a0aec0;
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+
+        .decorative-elements {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #228B22, #32CD32);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .decorative-elements::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #32CD32, #228B22);
+            border-radius: 50%;
+            animation: float 4s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+                margin: 20px;
+            }
+
+            .states-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .state-button {
+                padding: 18px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        .pulse-animation {
+            animation: pulseButton 0.6s ease-out;
+        }
+
+        @keyframes pulseButton {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="lang-toggle" style="position:absolute;top:20px;right:30px;padding:6px 16px;border-radius:8px;border:none;background:#32CD32;color:white;font-weight:600;cursor:pointer;z-index:2;">हिन्दी</button>
+        <div class="decorative-elements"></div>
+        
+        <img src="FP_logo.png" alt="Savannah Seeds Logo" class="logo" id="logo-img" style="max-width:200px; margin-bottom:10px;">
+        <p class="subtitle" id="subtitle-text">Choose your state</p>
+        
+        <div class="states-grid">
+            <a href="https://savannahseeds.ricereach.com/#/form/statewise-fullpage/haryana" class="state-button" onclick="addPulse(this)" id="state-haryana">
+                🌾 Haryana
+            </a>
+            
+            <a href="https://savannahseeds.ricereach.com/#/form/statewise-fullpage/madhya-pradesh" class="state-button" onclick="addPulse(this)" id="state-mp">
+                🌾 Madhya Pradesh
+            </a>
+            
+            <a href="https://savannahseeds.ricereach.com/#/form/statewise-fullpage/punjab" class="state-button" onclick="addPulse(this)" id="state-punjab">
+                🌾 Punjab
+            </a>
+            
+            <a href="https://savannahseeds.ricereach.com/#/form/statewise-fullpage/uk-up" class="state-button" onclick="addPulse(this)" id="state-upuk">
+                🌾 UP & UK
+            </a>
+            
+            <a href="https://savannahseeds.ricereach.com/#/form/statewise-fullpage/chhattisgarh" class="state-button" onclick="addPulse(this)" id="state-chhattisgarh">
+                🌾 Chhattisgarh
+            </a>
+        </div>
+        
+        <p class="footer-text" id="footer-text">Select your state and provide your FullPage EOI</p>
+    </div>
+
+    <script>
+        function addPulse(element) {
+            element.classList.add('pulse-animation');
+            setTimeout(() => {
+                element.classList.remove('pulse-animation');
+            }, 600);
+        }
+
+        // Add staggered animation to buttons on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.state-button');
+            buttons.forEach((button, index) => {
+                button.style.opacity = '0';
+                button.style.transform = 'translateY(30px)';
+                button.style.animation = `slideUp 0.6s ease-out ${0.1 * (index + 1)}s forwards`;
+            });
+        });
+
+        // Add subtle parallax effect on mouse move
+        document.addEventListener('mousemove', function(e) {
+            const container = document.querySelector('.container');
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            
+            container.style.transform = `translate(${(x - 50) * 0.02}px, ${(y - 50) * 0.02}px)`;
+        });
+
+        // Language translations
+        const translations = {
+            en: {
+                subtitle: "Choose your state",
+                haryana: "🌾 Haryana",
+                mp: "🌾 Madhya Pradesh",
+                punjab: "🌾 Punjab",
+                upuk: "🌾 UP & UK",
+                chhattisgarh: "🌾 Chhattisgarh",
+                footer: "Select your state and provide your FullPage EOI",
+                toggle: "हिन्दी"
+            },
+            hi: {
+                subtitle: "अपना राज्य चुनें",
+                haryana: "🌾 हरियाणा",
+                mp: "🌾 मध्य प्रदेश",
+                punjab: "🌾 पंजाब",
+                upuk: "🌾 उत्तर प्रदेश और उत्तराखंड",
+                chhattisgarh: "🌾 छत्तीसगढ़",
+                footer: "अपना राज्य चुनें और अपना फुलपेज ईओआई भरें",
+                toggle: "English"
+            }
+        };
+
+        let currentLang = "en";
+
+        function setLanguage(lang) {
+            // document.getElementById("logo-text").textContent = translations[lang].logo; // REMOVE THIS LINE
+            document.getElementById("subtitle-text").textContent = translations[lang].subtitle;
+            document.getElementById("state-haryana").textContent = translations[lang].haryana;
+            document.getElementById("state-mp").textContent = translations[lang].mp;
+            document.getElementById("state-punjab").textContent = translations[lang].punjab;
+            document.getElementById("state-upuk").textContent = translations[lang].upuk;
+            document.getElementById("state-chhattisgarh").textContent = translations[lang].chhattisgarh;
+            document.getElementById("footer-text").textContent = translations[lang].footer;
+            document.getElementById("lang-toggle").textContent = translations[lang].toggle;
+        }
+
+        document.getElementById("lang-toggle").addEventListener("click", function() {
+            currentLang = currentLang === "en" ? "hi" : "en";
+            setLanguage(currentLang);
+        });
+
+        // Initialize with English
+        setLanguage(currentLang);
+    </script>
+</body>
+</html>
